@@ -1,4 +1,4 @@
-package com.example.oopchallenge;
+package com.example.oopchallengesolution;
 
 public class Eye extends Organ {
 
@@ -9,6 +9,22 @@ public class Eye extends Organ {
         super(name, medicalCondition);
         this.color = color;
         this.eyeOpen = eyeOpen;
+    }
+
+    @Override
+    public void getDetails() {
+        super.getDetails();
+        System.out.println("Color: " + this.getColor());
+    }
+
+    public void open() {
+        this.setEyeOpen(true);
+        System.out.println(this.getName() + " Opened");
+    }
+
+    public void close() {
+        this.setEyeOpen(false);
+        System.out.println(this.getName() + " Closed");
     }
 
     public String getColor() {
