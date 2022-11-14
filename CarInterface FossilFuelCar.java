@@ -12,10 +12,9 @@ public class FossilFuelCar implements CarInterface {
     public void setName(String name) {
         this.name = name;
     }
-
-    @Override
-    public void printName(String name) {
-
+    
+    public void getName() {
+        return name;
     }
 
     @Override
