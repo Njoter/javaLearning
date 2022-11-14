@@ -1,116 +1,97 @@
-package com.example.oopchallenge;
+package com.example.oopchallengesolution;
 
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 
-        Eye leftEye = new Eye("Left Eye", "Short sighted", "Blue", true);
-        Eye rightEye = new Eye("Right Eye", "Normal", "Blue", true);
-        Heart heart = new Heart("Heart", "Normal", 65);
-        Organ stomach = new Organ("Stomach", "PUD");
-        Organ skin = new Organ("Skin", "Burned");
-
-        System.out.println("Name: Bob");
-        System.out.println("Age: 32");
+        Patient patient = new Patient("Jompa-Jarvis", 25,
+                new Eye("Left Eye", "Short Sighted", "Blue", true),
+                new Eye("Right Eye", "Normal", "Green", false),
+                new Heart("Heart", "Normal", 65),
+                new Stomach("Stomach", "PUD", true),
+                new Skin("Skin", "Burned", "White", 40));
 
         Scanner scanner = new Scanner(System.in);
+        int answer;
         int x;
-        int y;
+
+        System.out.println("Name: " + patient.getName());
+        System.out.println("Age: " + patient.getAge() + "\n");
 
         while (true) {
-//        prompt for organ
-            System.out.println("Choose an organ: ");
-            System.out.println("\t1. Left Eye");
-            System.out.println("\t2. Right Eye");
-            System.out.println("\t3. Heart");
-            System.out.println("\t4. Stomach");
-            System.out.println("\t5. Skin");
-            System.out.println("\t6. Quit");
-            x = scanner.nextInt();
+            System.out.println("Choose an organ:" +
+                    "\n\t1. Left Eye" +
+                    "\n\t2. Right Eye" +
+                    "\n\t3. Heart" +
+                    "\n\t4. Stomach" +
+                    "\n\t5. Skin" +
+                    "\n\t6. Quit");
 
-//             1. Left Eye
-            if (x == 1) {
-                System.out.println("Name: " + leftEye.getName());
-                System.out.println("Medical Condition: " + leftEye.getMedicalCondition());
-                System.out.println("Color: " + leftEye.getColor());
+            answer = scanner.nextInt();
 
-//                open or close left eye
-                if (leftEye.isEyeOpen()) {
-                    System.out.println("\t1. Close the Eye");
-                    y = scanner.nextInt();
-                    if (y == 1) {
-                        leftEye.setEyeOpen(false);
-                        System.out.println("Left Eye Closed");
+            switch (answer) {
+                case 1:
+                    patient.getLeftEye().getDetails();
+
+                    if (patient.getLeftEye().isEyeOpen()) {
+                        System.out.println("\n\t1. Close the Eye");
+                        if (scanner.nextInt() == 1) {
+                            patient.getLeftEye().close();
+                        }
+                    } else {
+                        System.out.println("\n\t1. Open the Eye");
+                        if (scanner.nextInt() == 1) {
+                            patient.getLeftEye().open();
+                        }
                     }
-                } else if (!leftEye.isEyeOpen()) {
-                    System.out.println("\t1. Open the Eye");
-                    y = scanner.nextInt();
-                    if (y == 1) {
-                        leftEye.setEyeOpen(true);
-                        System.out.println("Left Eye Opened");
+                    continue;
+
+                case 2:
+                    patient.getRightEye().getDetails();
+
+                    if (patient.getRightEye().isEyeOpen()) {
+                        System.out.println("\n\t1. Close the Eye");
+                        if (scanner.nextInt() == 1) {
+                            patient.getRightEye().close();
+                        }
+                    } else {
+                        System.out.println("\n\t1. Open the Eye");
+                        if (scanner.nextInt() == 1) {
+                            patient.getRightEye().open();
+                        }
                     }
-                }
+                    continue;
 
-//              2. right eye
-            } else if (x == 2) {
-                System.out.println("Name: " + rightEye.getName());
-                System.out.println("Medical Condition: " + rightEye.getMedicalCondition());
-                System.out.println("Color: " + rightEye.getColor());
+                case 3:
+                    patient.getHeart().getDetails();
+                    System.out.println("\n\t1. Change heart rate");
 
-//                open or close right eye
-                if (rightEye.isEyeOpen()) {
-                    System.out.println("\t1. Close the Eye");
-                    y = scanner.nextInt();
-                    if (y == 1) {
-                        rightEye.setEyeOpen(false);
-                        System.out.println("Right Eye Closed");
+                    if (scanner.nextInt() == 1) {
+                        System.out.println("Set heart rate to: ");
+                        patient.getHeart().setHeartRate(scanner.nextInt());
                     }
-                } else if (!rightEye.isEyeOpen()) {
-                    System.out.println("1. Open the Eye");
-                    y = scanner.nextInt();
-                    if (y == 1) {
-                        rightEye.setEyeOpen(true);
-                        System.out.println("Right Eye Opened");
+                    continue;
+
+                case 4:
+                    patient.getStomach().getDetails();
+
+                    if (patient.getStomach().isEmpty()) {
+                        System.out.println("\n\t1. Digest");
+                        if (scanner.nextInt() == 1) {
+                            patient.getStomach().digest();
+                            patient.getStomach().setEmpty(false);
+                        }
                     }
-                }
+                    continue;
 
-//              3. Heart
-            } else if (x == 3) {
-                System.out.println("Name: " + heart.getName());
-                System.out.println("Medical Condition: " + heart.getMedicalCondition());
-                System.out.println("Heart rate: " + heart.getHeartRate());
-                System.out.println("\t1. Change the heart rate");
-                y = scanner.nextInt();
+                case 5:
+                    patient.getSkin().getDetails();
+                    continue;
 
-                if (y == 1) {
-                    System.out.println("Enter the new heart rate");
-                    heart.setHeartRate(scanner.nextInt());
-                    System.out.println("Heart rate changed to: " + heart.getHeartRate());
-                }
-
-//              4. Stomach
-            } else if (x == 4) {
-                System.out.println("Name: " + stomach.getName());
-                System.out.println("Medical Condition: " + stomach.getMedicalCondition());
-                System.out.println("Need to be fed");
-                System.out.println("\t1. Digest");
-                y = scanner.nextInt();
-
-                if (y == 1) {
-                    System.out.println("Digesting begin...");
-                }
-
-//              5. Skin
-            } else if (x == 5) {
-                System.out.println("Name: " + skin.getName());
-                System.out.println("Medical Condition: " + skin.getMedicalCondition());
-
-//              6. Quit
-            } else if (x == 6) {
-                return;
+                case 6:
+                    return;
             }
         }
-
     }
 }
