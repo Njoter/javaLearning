@@ -1,4 +1,4 @@
-package com.example.oopchallenge;
+package com.example.oopchallengesolution;
 
 public class Organ {
     private String name;
@@ -7,6 +7,11 @@ public class Organ {
     public Organ(String name, String medicalCondition) {
         this.name = name;
         this.medicalCondition = medicalCondition;
+    }
+
+    public void getDetails() {
+        System.out.println("Name: " + this.getName());
+        System.out.println("Medical Condition: " + this.getMedicalCondition());
     }
 
     public String getName() {
@@ -19,9 +24,5 @@ public class Organ {
 
     public String getMedicalCondition() {
         return medicalCondition;
-    }
-
-    public void setMedicalCondition(String medicalCondition) {
-        this.medicalCondition = medicalCondition;
     }
 }
